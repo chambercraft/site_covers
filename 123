@@ -1,0 +1,1411 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ковры ручной работы на заказ | ArtCarpet | Эксклюзивные ковры в Москве</title>
+    <meta name="description" content="Эксклюзивные ковры ручной работы на заказ в Москве. Создаем уникальные ковры по вашим эскизам. Натуральные материалы, 30-летний опыт.">
+    <meta name="keywords" content="ковры ручной работы, заказать ковер, эксклюзивные ковры, ковры на заказ, москва">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <style>
+        /* Общие стили */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            color: #333;
+            line-height: 1.6;
+            background-color: #f9f5f0;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        section {
+            padding: 80px 0;
+        }
+        
+        h1, h2, h3 {
+            margin-bottom: 20px;
+            color: #5d4037;
+        }
+        
+        p {
+            margin-bottom: 15px;
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: #8d6e63;
+            color: white;
+            padding: 12px 30px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            text-decoration: none;
+            font-size: 16px;
+            transition: background-color 0.3s;
+        }
+        
+        .btn:hover {
+            background-color: #6d4c41;
+        }
+        
+        /* Шапка */
+        header {
+            background-color: #5d4037;
+            color: white;
+            padding: 20px 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: 30px;
+        }
+        
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        nav ul li a:hover {
+            color: #d7ccc8;
+        }
+        
+        /* Мобильное меню */
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+        }
+        
+        .menu-toggle span {
+            height: 3px;
+            width: 25px;
+            background-color: white;
+            margin-bottom: 5px;
+            border-radius: 2px;
+            transition: all 0.3s ease;
+        }
+        
+        /* Герой секция */
+        .hero {
+            background: linear-gradient(rgba(93, 64, 55, 0.7), rgba(93, 64, 55, 0.7)), url('https://images.unsplash.com/photo-1600166898405-da9535204843?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80') no-repeat center center/cover;
+            height: 100vh;
+            color: white;
+            display: flex;
+            align-items: center;
+            text-align: center;
+        }
+        
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .hero h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+            color: white;
+        }
+        
+        .hero p {
+            font-size: 20px;
+            margin-bottom: 30px;
+        }
+        
+        /* О нас */
+        .about {
+            background-color: white;
+        }
+        
+        .about-content {
+            display: flex;
+            align-items: center;
+            gap: 50px;
+        }
+        
+        .about-text {
+            flex: 1;
+        }
+        
+        .about-image {
+            flex: 1;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .about-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        
+        /* Каталог */
+        .catalog {
+            background-color: #f5f5f5;
+        }
+        
+        .catalog-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+        
+        .catalog-item {
+            background-color: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: transform 0.3s;
+        }
+        
+        .catalog-item:hover {
+            transform: translateY(-10px);
+        }
+        
+        .catalog-item img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+        
+        .catalog-item-content {
+            padding: 20px;
+        }
+        
+        .catalog-item h3 {
+            margin-bottom: 10px;
+        }
+        
+        .catalog-item p {
+            margin-bottom: 15px;
+            color: #666;
+        }
+        
+        /* Процесс */
+        .process-steps {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 40px;
+            flex-wrap: wrap;
+        }
+        
+        .step {
+            flex: 1;
+            min-width: 200px;
+            text-align: center;
+            padding: 20px;
+            margin: 10px;
+        }
+        
+        .step-number {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 60px;
+            height: 60px;
+            background-color: #8d6e63;
+            color: white;
+            border-radius: 50%;
+            margin: 0 auto 20px;
+            font-size: 24px;
+            font-weight: bold;
+        }
+        
+        /* Отзывы */
+        .testimonials {
+            background-color: #f5f5f5;
+        }
+        
+        .testimonial-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+        
+        .testimonial {
+            background-color: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+        
+        .testimonial-text {
+            font-style: italic;
+            margin-bottom: 20px;
+        }
+        
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+        }
+        
+        .testimonial-author img {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            margin-right: 15px;
+            object-fit: cover;
+        }
+        
+        /* Форма заказа */
+        .order {
+            background-color: white;
+        }
+        
+        .order-form {
+            max-width: 600px;
+            margin: 40px auto 0;
+            background-color: #f9f5f0;
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+        
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+        
+        .form-group textarea {
+            height: 120px;
+            resize: vertical;
+        }
+        
+        .error-message {
+            color: #f44336;
+            font-size: 14px;
+            margin-top: 5px;
+            display: none;
+        }
+        
+        .form-group.error input,
+        .form-group.error textarea,
+        .form-group.error select {
+            border-color: #f44336;
+        }
+        
+        .form-group.success input,
+        .form-group.success textarea,
+        .form-group.success select {
+            border-color: #4caf50;
+        }
+        
+        .loading {
+            display: none;
+            text-align: center;
+            margin-top: 10px;
+        }
+        
+        .loading-spinner {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid rgba(255,255,255,.3);
+            border-radius: 50%;
+            border-top-color: #fff;
+            animation: spin 1s ease-in-out infinite;
+        }
+        
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+        
+        /* Модальное окно оплаты */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.5);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .modal-content {
+            background-color: white;
+            border-radius: 12px;
+            max-width: 500px;
+            width: 90%;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            overflow: hidden;
+        }
+        
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 25px;
+            border-bottom: 1px solid #eee;
+            background-color: #f9f9f9;
+        }
+        
+        .modal-header h3 {
+            margin: 0;
+            color: #333;
+        }
+        
+        .close-modal {
+            font-size: 24px;
+            cursor: pointer;
+            color: #888;
+            transition: color 0.3s;
+        }
+        
+        .close-modal:hover {
+            color: #333;
+        }
+        
+        .modal-body {
+            padding: 25px;
+        }
+        
+        .order-summary {
+            background-color: #f9f5f0;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+        
+        .order-summary p {
+            margin-bottom: 8px;
+            display: flex;
+            justify-content: space-between;
+        }
+        
+        .order-summary .total {
+            font-weight: bold;
+            font-size: 18px;
+            border-top: 1px solid #ddd;
+            padding-top: 10px;
+            margin-top: 10px;
+        }
+        
+        .payment-methods {
+            display: flex;
+            gap: 10px;
+            margin: 20px 0;
+        }
+        
+        .payment-method {
+            flex: 1;
+            text-align: center;
+            padding: 15px 10px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .payment-method:hover, .payment-method.active {
+            border-color: #8d6e63;
+            background-color: #f9f5f0;
+        }
+        
+        .payment-method img {
+            height: 30px;
+            margin-bottom: 10px;
+        }
+        
+        .payment-method .method-name {
+            font-size: 14px;
+            font-weight: 500;
+        }
+        
+        .payment-form {
+            margin-top: 20px;
+        }
+        
+        .card-icons {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+        
+        .card-icon {
+            width: 40px;
+            height: 25px;
+            background-color: #f0f0f0;
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            color: #666;
+        }
+        
+        .card-input-group {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+        
+        .card-input-group .form-group {
+            flex: 1;
+            margin-bottom: 0;
+        }
+        
+        .secure-payment {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #f0f8f0;
+            border-radius: 6px;
+            font-size: 14px;
+            color: #2e7d32;
+        }
+        
+        .secure-payment i {
+            font-size: 18px;
+        }
+        
+        .pay-button {
+            width: 100%;
+            padding: 15px;
+            background-color: #4caf50;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            margin-top: 15px;
+        }
+        
+        .pay-button:hover {
+            background-color: #388e3c;
+        }
+        
+        .pay-button:disabled {
+            background-color: #cccccc;
+            cursor: not-allowed;
+        }
+        
+        /* Контакты */
+        .contacts {
+            background-color: white;
+            text-align: center;
+        }
+        
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 40px;
+            margin-top: 40px;
+        }
+        
+        .contact-item {
+            flex: 1;
+            min-width: 200px;
+            padding: 20px;
+        }
+        
+        .contact-item i {
+            font-size: 36px;
+            color: #8d6e63;
+            margin-bottom: 15px;
+        }
+        
+        .contact-item h3 {
+            margin-bottom: 10px;
+        }
+        
+        /* Уведомления */
+        .notification {
+            position: fixed;
+            top: 100px;
+            right: 20px;
+            padding: 15px 25px;
+            border-radius: 8px;
+            color: white;
+            font-weight: 500;
+            z-index: 3000;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            transform: translateX(150%);
+            transition: transform 0.4s ease;
+        }
+        
+        .notification.show {
+            transform: translateX(0);
+        }
+        
+        .notification.success {
+            background-color: #4caf50;
+        }
+        
+        .notification.error {
+            background-color: #f44336;
+        }
+        
+        .notification.info {
+            background-color: #2196f3;
+        }
+        
+        /* Подвал */
+        footer {
+            background-color: #5d4037;
+            color: white;
+            padding: 60px 0 30px;
+        }
+        
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            margin-bottom: 40px;
+        }
+        
+        .footer-column {
+            flex: 1;
+            min-width: 250px;
+            margin-bottom: 30px;
+        }
+        
+        .footer-column h3 {
+            color: white;
+            margin-bottom: 20px;
+        }
+        
+        .footer-column ul {
+            list-style: none;
+        }
+        
+        .footer-column ul li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-column ul li a {
+            color: #d7ccc8;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-column ul li a:hover {
+            color: white;
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            color: #d7ccc8;
+        }
+        
+        /* Адаптивность */
+        @media (max-width: 768px) {
+            .header-container {
+                flex-direction: column;
+            }
+            
+            nav ul {
+                display: none;
+                flex-direction: column;
+                width: 100%;
+                text-align: center;
+                margin-top: 20px;
+            }
+            
+            nav ul.show {
+                display: flex;
+            }
+            
+            nav ul li {
+                margin: 10px 0;
+            }
+            
+            .menu-toggle {
+                display: flex;
+                position: absolute;
+                right: 20px;
+                top: 20px;
+            }
+            
+            .about-content {
+                flex-direction: column;
+            }
+            
+            .hero h1 {
+                font-size: 36px;
+            }
+            
+            .hero p {
+                font-size: 18px;
+            }
+            
+            .card-input-group {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .contact-info {
+                flex-direction: column;
+                gap: 20px;
+            }
+            
+            .notification {
+                right: 10px;
+                left: 10px;
+                transform: translateY(-150%);
+            }
+            
+            .notification.show {
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Уведомления -->
+    <div id="notification" class="notification"></div>
+
+    <!-- Шапка -->
+    <header>
+        <div class="container header-container">
+            <div class="logo">ArtCarpet</div>
+            <div class="menu-toggle" id="menuToggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <nav>
+                <ul id="navMenu">
+                    <li><a href="#about">О нас</a></li>
+                    <li><a href="#catalog">Каталог</a></li>
+                    <li><a href="#process">Процесс</a></li>
+                    <li><a href="#testimonials">Отзывы</a></li>
+                    <li><a href="#order">Заказать</a></li>
+                    <li><a href="#contacts">Контакты</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Герой секция -->
+    <section class="hero">
+        <div class="container hero-content">
+            <h1>Эксклюзивные ковры ручной работы</h1>
+            <p>Создаем уникальные ковры по вашим эскизам с любовью и вниманием к деталям</p>
+            <a href="#order" class="btn">Заказать ковер</a>
+        </div>
+    </section>
+
+    <!-- О нас -->
+    <section id="about" class="about">
+        <div class="container">
+            <h2>О нашей мастерской</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <p>Мы - семейная мастерская с более чем 30-летним опытом создания ковров ручной работы. Наши мастера владеют древними техниками ткачества, передаваемыми из поколения в поколение.</p>
+                    <p>Каждый ковер создается индивидуально по вашим пожеланиям: от размера и формы до рисунка и цветовой гаммы. Мы используем только натуральные материалы: шерсть, шелк и хлопок высшего качества.</p>
+                    <p>Наша миссия - создавать не просто ковры, а произведения искусства, которые будут радовать вас и ваших близких долгие годы.</p>
+                </div>
+                <div class="about-image">
+                    <img src="https://images.unsplash.com/photo-1595428774223-ef52624120d2?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Мастер за работой над ковром">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Каталог -->
+    <section id="catalog" class="catalog">
+        <div class="container">
+            <h2>Примеры наших работ</h2>
+            <div class="catalog-grid">
+                <div class="catalog-item">
+                    <img src="https://images.unsplash.com/photo-1598701420493-8cebc0c3c57e?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Персидский ковер">
+                    <div class="catalog-item-content">
+                        <h3>Персидский стиль</h3>
+                        <p>Классический ковер с традиционными орнаментами. Размер: 2x3 м.</p>
+                        <p class="price">от 45 000 руб.</p>
+                        <button class="btn buy-btn" data-product="Персидский ковер" data-price="45000">Купить</button>
+                    </div>
+                </div>
+                <div class="catalog-item">
+                    <img src="https://images.unsplash.com/photo-1595428774223-ef52624120d2?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Современный ковер">
+                    <div class="catalog-item-content">
+                        <h3>Современный дизайн</h3>
+                        <p>Абстрактный ковер в современном стиле. Размер: 1.5x2 м.</p>
+                        <p class="price">от 35 000 руб.</p>
+                        <button class="btn buy-btn" data-product="Современный ковер" data-price="35000">Купить</button>
+                    </div>
+                </div>
+                <div class="catalog-item">
+                    <img src="https://images.unsplash.com/photo-1600166898405-da9535204843?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Детский ковер">
+                    <div class="catalog-item-content">
+                        <h3>Детская коллекция</h3>
+                        <p>Яркий ковер с детскими мотивами. Размер: 1.2x1.8 м.</p>
+                        <p class="price">от 25 000 руб.</p>
+                        <button class="btn buy-btn" data-product="Детский ковер" data-price="25000">Купить</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Процесс -->
+    <section id="process" class="process">
+        <div class="container">
+            <h2>Как мы работаем</h2>
+            <div class="process-steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <h3>Консультация</h3>
+                    <p>Обсуждаем ваши пожелания, размеры, стиль и бюджет</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <h3>Эскиз</h3>
+                    <p>Создаем детальный эскиз будущего ковра для вашего утверждения</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <h3>Изготовление</h3>
+                    <p>Наши мастера вручную создают ваш ковер (от 2 до 8 недель)</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <h3>Доставка</h3>
+                    <p>Аккуратно доставляем готовый ковер в любую точку страны</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Отзывы -->
+    <section id="testimonials" class="testimonials">
+        <div class="container">
+            <h2>Отзывы наших клиентов</h2>
+            <div class="testimonial-grid">
+                <div class="testimonial">
+                    <div class="testimonial-text">
+                        "Заказывала ковер в гостиную. Результат превзошел все ожидания! Качество работы и материалов на высшем уровне. Спасибо мастерам за их труд!"
+                    </div>
+                    <div class="testimonial-author">
+                        <img src="https://randomuser.me/api/portraits/women/45.jpg" alt="Ольга">
+                        <div>
+                            <h4>Ольга Иванова</h4>
+                            <p>Москва</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial">
+                    <div class="testimonial-text">
+                        "Подарил жене ковер ручной работы на юбилей. Она в восторге! Особенно ценно, что мы сами выбирали дизайн. Теперь это семейная реликвия."
+                    </div>
+                    <div class="testimonial-author">
+                        <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Дмитрий">
+                        <div>
+                            <h4>Дмитрий Петров</h4>
+                            <p>Санкт-Петербург</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial">
+                    <div class="testimonial-text">
+                        "Работаю дизайнером интерьеров и регулярно заказываю ковры для своих проектов. Качество всегда на высоте, клиенты довольны. Рекомендую!"
+                    </div>
+                    <div class="testimonial-author">
+                        <img src="https://randomuser.me/api/portraits/women/68.jpg" alt="Елена">
+                        <div>
+                            <h4>Елена Смирнова</h4>
+                            <p>Дизайнер интерьеров</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Форма заказа -->
+    <section id="order" class="order">
+        <div class="container">
+            <h2>Заказать ковер</h2>
+            <p>Заполните форму, и наш менеджер свяжется с вами для обсуждения деталей</p>
+            
+            <form class="order-form" id="orderForm">
+                <div class="form-group">
+                    <label for="name">Ваше имя</label>
+                    <input type="text" id="name" name="name" required>
+                    <div class="error-message" id="nameError">Пожалуйста, введите ваше имя</div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="phone">Телефон</label>
+                    <input type="tel" id="phone" name="phone" required>
+                    <div class="error-message" id="phoneError">Пожалуйста, введите корректный номер телефона</div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" required>
+                    <div class="error-message" id="emailError">Пожалуйста, введите корректный email</div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="size">Примерный размер ковра</label>
+                    <select id="size" name="size">
+                        <option value="small">До 2 кв.м.</option>
+                        <option value="medium">2-4 кв.м.</option>
+                        <option value="large">4-8 кв.м.</option>
+                        <option value="xlarge">Более 8 кв.м.</option>
+                        <option value="custom">Нестандартный размер</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="style">Предпочтительный стиль</label>
+                    <select id="style" name="style">
+                        <option value="persian">Персидский</option>
+                        <option value="modern">Современный</option>
+                        <option value="traditional">Традиционный</option>
+                        <option value="ethnic">Этнический</option>
+                        <option value="custom">Индивидуальный дизайн</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="budget">Бюджет</label>
+                    <select id="budget" name="budget">
+                        <option value="low">До 30 000 руб.</option>
+                        <option value="medium">30 000 - 60 000 руб.</option>
+                        <option value="high">60 000 - 100 000 руб.</option>
+                        <option value="premium">Более 100 000 руб.</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="message">Дополнительные пожелания</label>
+                    <textarea id="message" name="message" placeholder="Опишите ваши идеи, предпочтения по цвету, орнаменту и т.д."></textarea>
+                </div>
+                
+                <button type="submit" class="btn" id="submitBtn">
+                    Отправить заявку
+                </button>
+                <div class="loading" id="loadingIndicator">
+                    <div class="loading-spinner"></div>
+                    <span>Отправка...</span>
+                </div>
+            </form>
+        </div>
+    </section>
+
+    <!-- Контакты -->
+    <section id="contacts" class="contacts">
+        <div class="container">
+            <h2>Наши контакты</h2>
+            <div class="contact-info">
+                <div class="contact-item">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <h3>Адрес</h3>
+                    <p>Москва, ул. Ткацкая, 15</p>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-phone"></i>
+                    <h3>Телефон</h3>
+                    <p>+7 (495) 123-45-67</p>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-envelope"></i>
+                    <h3>Email</h3>
+                    <p>danila.shmelev.23@artcarpet.ru</p>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-clock"></i>
+                    <h3>Часы работы</h3>
+                    <p>Пн-Пт: 9:00 - 19:00</p>
+                    <p>Сб: 10:00 - 17:00</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Модальное окно оплаты -->
+    <div id="paymentModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Оплата заказа</h3>
+                <span class="close-modal">&times;</span>
+            </div>
+            <div class="modal-body">
+                <div class="order-summary">
+                    <p><span>Товар:</span> <span id="productName">Персидский ковер</span></p>
+                    <p><span>Сумма:</span> <span id="productPrice">45000</span> руб.</p>
+                    <p class="total"><span>Итого к оплате:</span> <span id="totalPrice">45000</span> руб.</p>
+                </div>
+                
+                <div class="payment-methods">
+                    <div class="payment-method active" data-method="card">
+                        <div class="method-name">Банковская карта</div>
+                    </div>
+                    <div class="payment-method" data-method="yandex">
+                        <div class="method-name">Яндекс.Деньги</div>
+                    </div>
+                    <div class="payment-method" data-method="sber">
+                        <div class="method-name">Сбербанк Онлайн</div>
+                    </div>
+                </div>
+                
+                <div class="payment-form">
+                    <div class="card-icons">
+                        <div class="card-icon">VISA</div>
+                        <div class="card-icon">MC</div>
+                        <div class="card-icon">MIR</div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="cardNumber">Номер карты</label>
+                        <input type="text" id="cardNumber" placeholder="0000 0000 0000 0000" maxlength="19">
+                        <div class="error-message" id="cardNumberError">Пожалуйста, введите корректный номер карты</div>
+                    </div>
+                    
+                    <div class="card-input-group">
+                        <div class="form-group">
+                            <label for="cardExpiry">Срок действия</label>
+                            <input type="text" id="cardExpiry" placeholder="ММ/ГГ" maxlength="5">
+                            <div class="error-message" id="cardExpiryError">Пожалуйста, введите корректный срок действия</div>
+                        </div>
+                        <div class="form-group">
+                            <label for="cardCvc">CVC/CVV</label>
+                            <input type="text" id="cardCvc" placeholder="000" maxlength="3">
+                            <div class="error-message" id="cardCvcError">Пожалуйста, введите корректный CVC/CVV</div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="cardHolder">Имя владельца</label>
+                        <input type="text" id="cardHolder" placeholder="IVAN IVANOV">
+                        <div class="error-message" id="cardHolderError">Пожалуйста, введите имя владельца карты</div>
+                    </div>
+                    
+                    <div class="secure-payment">
+                        <i class="fas fa-lock"></i>
+                        <span>Ваши платежные данные надежно защищены</span>
+                    </div>
+                    
+                    <button id="payButton" class="pay-button">Оплатить <span id="payAmount">45000</span> руб.</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Подвал -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>ArtCarpet</h3>
+                    <p>Создаем эксклюзивные ковры ручной работы с 1990 года.</p>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Контакты</h3>
+                    <ul>
+                        <li>Москва, ул. Ткацкая, 15</li>
+                        <li>+7 (495) 123-45-67</li>
+                        <li>danila.shmelev.23@artcarpet.ru</li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Часы работы</h3>
+                    <ul>
+                        <li>Пн-Пт: 9:00 - 19:00</li>
+                        <li>Сб: 10:00 - 17:00</li>
+                        <li>Вс: выходной</li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Быстрые ссылки</h3>
+                    <ul>
+                        <li><a href="#about">О нас</a></li>
+                        <li><a href="#catalog">Каталог</a></li>
+                        <li><a href="#process">Процесс</a></li>
+                        <li><a href="#order">Заказать</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2023 ArtCarpet. Все права защищены.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Инициализация EmailJS
+        (function() {
+            emailjs.init("M5B6PFXrTANINI1yc"); // Замените на ваш публичный ключ из EmailJS
+        })();
+        
+        // Функция показа уведомлений
+        function showNotification(message, type = 'success') {
+            const notification = document.getElementById('notification');
+            notification.textContent = message;
+            notification.className = `notification ${type} show`;
+            
+            setTimeout(() => {
+                notification.classList.remove('show');
+            }, 5000);
+        }
+        
+        // Мобильное меню
+        const menuToggle = document.getElementById('menuToggle');
+        const navMenu = document.getElementById('navMenu');
+        
+        menuToggle.addEventListener('click', function() {
+            navMenu.classList.toggle('show');
+            menuToggle.classList.toggle('active');
+        });
+        
+        // Плавная прокрутка к якорям
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                    
+                    // Закрытие меню на мобильных устройствах после клика
+                    if (navMenu.classList.contains('show')) {
+                        navMenu.classList.remove('show');
+                        menuToggle.classList.remove('active');
+                    }
+                }
+            });
+        });
+        
+        // Валидация формы
+        function validateForm() {
+            let isValid = true;
+            
+            // Валидация имени
+            const name = document.getElementById('name');
+            const nameError = document.getElementById('nameError');
+            if (name.value.trim() === '') {
+                name.parentElement.classList.add('error');
+                nameError.style.display = 'block';
+                isValid = false;
+            } else {
+                name.parentElement.classList.remove('error');
+                name.parentElement.classList.add('success');
+                nameError.style.display = 'none';
+            }
+            
+            // Валидация телефона
+            const phone = document.getElementById('phone');
+            const phoneError = document.getElementById('phoneError');
+            const phoneRegex = /^(\+7|7|8)?[\s\-]?\(?[489][0-9]{2}\)?[\s\-]?[0-9]{3}[\s\-]?[0-9]{2}[\s\-]?[0-9]{2}$/;
+            if (!phoneRegex.test(phone.value.replace(/\s/g, ''))) {
+                phone.parentElement.classList.add('error');
+                phoneError.style.display = 'block';
+                isValid = false;
+            } else {
+                phone.parentElement.classList.remove('error');
+                phone.parentElement.classList.add('success');
+                phoneError.style.display = 'none';
+            }
+            
+            // Валидация email
+            const email = document.getElementById('email');
+            const emailError = document.getElementById('emailError');
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(email.value)) {
+                email.parentElement.classList.add('error');
+                emailError.style.display = 'block';
+                isValid = false;
+            } else {
+                email.parentElement.classList.remove('error');
+                email.parentElement.classList.add('success');
+                emailError.style.display = 'none';
+            }
+            
+            return isValid;
+        }
+        
+        // Обработка формы заказа
+        const orderForm = document.getElementById('orderForm');
+        const submitBtn = document.getElementById('submitBtn');
+        const loadingIndicator = document.getElementById('loadingIndicator');
+        
+        orderForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            if (!validateForm()) {
+                showNotification('Пожалуйста, исправьте ошибки в форме.', 'error');
+                return;
+            }
+            
+            // Показать индикатор загрузки
+            submitBtn.style.display = 'none';
+            loadingIndicator.style.display = 'block';
+            
+            // Сбор данных формы
+            const formData = {
+                name: document.getElementById('name').value,
+                phone: document.getElementById('phone').value,
+                email: document.getElementById('email').value,
+                size: document.getElementById('size').value,
+                style: document.getElementById('style').value,
+                budget: document.getElementById('budget').value,
+                message: document.getElementById('message').value,
+                date: new Date().toLocaleString('ru-RU')
+            };
+            
+            // Отправка email через EmailJS
+            emailjs.send('service_avav8z8', 'tamplate_6iamv0p', formData) // Замените на ваши ID
+                .then(function(response) {
+                    console.log('SUCCESS!', response.status, response.text);
+                    showNotification('Заявка успешно отправлена! Мы свяжемся с вами в ближайшее время.', 'success');
+                    orderForm.reset();
+                    
+                    // Сброс стилей формы
+                    document.querySelectorAll('.form-group').forEach(group => {
+                        group.classList.remove('success');
+                    });
+                }, function(error) {
+                    console.log('FAILED...', error);
+                    showNotification('Произошла ошибка при отправке заявки. Пожалуйста, попробуйте еще раз или свяжитесь с нами по телефону.', 'error');
+                })
+                .finally(function() {
+                    // Скрыть индикатор загрузки
+                    submitBtn.style.display = 'inline-block';
+                    loadingIndicator.style.display = 'none';
+                });
+        });
+        
+        // Работа с модальным окном оплаты
+        const modal = document.getElementById('paymentModal');
+        const closeModal = document.querySelector('.close-modal');
+        const buyButtons = document.querySelectorAll('.buy-btn');
+        const productName = document.getElementById('productName');
+        const productPrice = document.getElementById('productPrice');
+        const totalPrice = document.getElementById('totalPrice');
+        const payAmount = document.getElementById('payAmount');
+        const paymentMethods = document.querySelectorAll('.payment-method');
+        const payButton = document.getElementById('payButton');
+        
+        // Открытие модального окна при нажатии на кнопку "Купить"
+        buyButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                const product = this.getAttribute('data-product');
+                const price = this.getAttribute('data-price');
+                
+                productName.textContent = product;
+                productPrice.textContent = price;
+                totalPrice.textContent = price;
+                payAmount.textContent = price;
+                
+                modal.style.display = 'flex';
+            });
+        });
+        
+        // Закрытие модального окна
+        closeModal.addEventListener('click', function() {
+            modal.style.display = 'none';
+        });
+        
+        // Закрытие модального окна при клике вне его
+        window.addEventListener('click', function(e) {
+            if (e.target === modal) {
+                modal.style.display = 'none';
+            }
+        });
+        
+        // Выбор способа оплаты
+        paymentMethods.forEach(method => {
+            method.addEventListener('click', function() {
+                paymentMethods.forEach(m => m.classList.remove('active'));
+                this.classList.add('active');
+            });
+        });
+        
+        // Валидация платежной формы
+        function validatePaymentForm() {
+            let isValid = true;
+            
+            // Валидация номера карты
+            const cardNumber = document.getElementById('cardNumber');
+            const cardNumberError = document.getElementById('cardNumberError');
+            if (cardNumber.value.replace(/\s/g, '').length !== 16) {
+                cardNumber.parentElement.classList.add('error');
+                cardNumberError.style.display = 'block';
+                isValid = false;
+            } else {
+                cardNumber.parentElement.classList.remove('error');
+                cardNumberError.style.display = 'none';
+            }
+            
+            // Валидация срока действия
+            const cardExpiry = document.getElementById('cardExpiry');
+            const cardExpiryError = document.getElementById('cardExpiryError');
+            const expiryRegex = /^(0[1-9]|1[0-2])\/?([0-9]{2})$/;
+            if (!expiryRegex.test(cardExpiry.value)) {
+                cardExpiry.parentElement.classList.add('error');
+                cardExpiryError.style.display = 'block';
+                isValid = false;
+            } else {
+                cardExpiry.parentElement.classList.remove('error');
+                cardExpiryError.style.display = 'none';
+            }
+            
+            // Валидация CVC/CVV
+            const cardCvc = document.getElementById('cardCvc');
+            const cardCvcError = document.getElementById('cardCvcError');
+            if (cardCvc.value.length !== 3 || isNaN(cardCvc.value)) {
+                cardCvc.parentElement.classList.add('error');
+                cardCvcError.style.display = 'block';
+                isValid = false;
+            } else {
+                cardCvc.parentElement.classList.remove('error');
+                cardCvcError.style.display = 'none';
+            }
+            
+            // Валидация имени владельца
+            const cardHolder = document.getElementById('cardHolder');
+            const cardHolderError = document.getElementById('cardHolderError');
+            if (cardHolder.value.trim() === '') {
+                cardHolder.parentElement.classList.add('error');
+                cardHolderError.style.display = 'block';
+                isValid = false;
+            } else {
+                cardHolder.parentElement.classList.remove('error');
+                cardHolderError.style.display = 'none';
+            }
+            
+            return isValid;
+        }
+        
+        // Обработка оплаты
+        payButton.addEventListener('click', function() {
+            if (!validatePaymentForm()) {
+                showNotification('Пожалуйста, исправьте ошибки в форме оплаты.', 'error');
+                return;
+            }
+            
+            // Эмуляция процесса оплаты
+            payButton.textContent = 'Обработка...';
+            payButton.disabled = true;
+            
+            setTimeout(function() {
+                modal.style.display = 'none';
+                showNotification('Оплата прошла успешно! Спасибо за ваш заказ. Мы свяжемся с вами для уточнения деталей.', 'success');
+                payButton.textContent = 'Оплатить ' + payAmount.textContent + ' руб.';
+                payButton.disabled = false;
+                
+                // Очистка формы
+                document.getElementById('cardNumber').value = '';
+                document.getElementById('cardExpiry').value = '';
+                document.getElementById('cardCvc').value = '';
+                document.getElementById('cardHolder').value = '';
+                
+                // Отправка email о покупке
+                const purchaseData = {
+                    product: productName.textContent,
+                    price: productPrice.textContent,
+                    date: new Date().toLocaleString('ru-RU')
+                };
+                
+                emailjs.send('service_avav8z8', 'tamplate_t21b35i', purchaseData)
+                    .then(function(response) {
+                        console.log('Purchase email sent!', response.status, response.text);
+                    }, function(error) {
+                        console.log('Failed to send purchase email...', error);
+                    });
+            }, 2000);
+        });
+        
+        // Форматирование ввода номера карты
+        document.getElementById('cardNumber').addEventListener('input', function(e) {
+            let value = e.target.value.replace(/\s+/g, '').replace(/[^0-9]/gi, '');
+            let formattedValue = '';
+            
+            for (let i = 0; i < value.length; i++) {
+                if (i > 0 && i % 4 === 0) {
+                    formattedValue += ' ';
+                }
+                formattedValue += value[i];
+            }
+            
+            e.target.value = formattedValue;
+        });
+        
+        // Форматирование ввода срока действия карты
+        document.getElementById('cardExpiry').addEventListener('input', function(e) {
+            let value = e.target.value.replace(/\s+/g, '').replace(/[^0-9]/gi, '');
+            let formattedValue = '';
+            
+            for (let i = 0; i < value.length; i++) {
+                if (i === 2) {
+                    formattedValue += '/';
+                }
+                formattedValue += value[i];
+            }
+            
+            e.target.value = formattedValue;
+        });
+    </script>
+</body>
+</html>
